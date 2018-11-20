@@ -13,8 +13,9 @@ Command to run against a given passed in file of numbers<br>
 Command to run a test scenario against a small and large number set<br>
 <i>java -jar build/jar/NumberMatcher.jar runtest</i>
 
-Design Decisions
+<b>Design Decisions</b></br>
 The design approach taken is to use an external sorting algorithm as opposed to internal in memory sorting over the full list of numbers since we need to consider the limit on memory and processing.
+
 1.	Make a calculation based on the amount of memory available and amount of max files we will allow to be created to determine the correct size in kb each file we will create. At the moment these are fixed at 2mb of memory and 512 files max.
 2.	Read the input file line by line taking each number and storing that number in a list. 
 3.	Once we reach the max size we set for each file take the current read numbers in the collection list and sort them from smallest to largest number. 
@@ -25,24 +26,7 @@ The design approach taken is to use an external sorting algorithm as opposed to 
 8.	As we read each number from the queue write that number out to a temp file. Once this is complete we will have a sorted list of numbers that were in the original file.
 9.	Final step is to read the temp file and check for duplications on the current and next number to be read from the file. Since the file numbers are sorted duplicates will be present in sequence (i.e. 1,2,3,3,3,4,5,6,6,6 etc…)
 
-Test Plan Results
-The output from the test plan when run produces 4 different test scenario results.
-•	Runs a test against a small set of test data to check the count of duplicates found matches the count of duplicates added to the test data.
-
-Test Case A (Correct array size, small number set): Passed
-
-•	Runs a test against a small set of test data to check each of the duplicates found matches the duplicate numbers added to the test data.
-
-Test Case B (Correct numbers present, small number set): Passed
-
-•	Runs a test against a large set of test data to check the count of duplicates found matches the count of duplicates added to the test data.
-
-Test Case C (Correct array size, large number set): Passed
-•	Runs a test against a large set of test data to check each of the duplicates found matches the duplicate numbers added to the test data.
-
-Test Case D (Correct numbers present, large number set): Passed
-
-Performance Assessment
+<b>Performance Assessment</b></br>
 The performance of the solution when running should be efficient to work within the given memory constraints especially when storing each subset of numbers in memory and writing back to disk. At this stage is the most when memory is at its capacity. Special consideration should be given to the speed and access to disk when reading and writing data from the temp sorted files especially when these files are accessed and processed from the priority queue.
 Another solution to using a priority queue is to read a small subset of numbers from each sorted file into memory (i.e if we have 2mb files and 5 files then read about 400k of data from each of the 5 files which equals our 2mb limit). Once we read this data sort the input and write out a batch of data from the top of the list, maybe 200k of data). Read then 200k more data across the 5 files and repeat the sorting and writing out a small subset again. This will ensure the sorted numbers will make their way up the list from least to most and be written out in that fashion. It may not be an ideal solution if there is a large set of duplicates present in the input file. We may not reach the top of the list quick enough to be in order as we are reading from the split files.
 
