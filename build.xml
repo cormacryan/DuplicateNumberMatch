@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".">
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac includeantruntime="false" srcdir="src" destdir="build/classes"/>
+    </target>
+
+    <target name="release" depends="compile" >
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/NumberMatcher.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="com.devtest.matcher.Main"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run">
+	    <java jar="build/jar/NumberMatcher.jar" fork="true"/>
+    </target>
+
+    <target name="runtest" >
+	    <java jar="build/jar/NumberMatcher.jar" fork="true">
+	    	<arg line="runtest"/>
+	    </java>
+    </target>    
+</project>
