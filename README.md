@@ -1,46 +1,17 @@
 # DuplicateNumberMatch
 
-Algorithm to detect and print out duplicate numbers stored in an input file based on limited memory 
-and processing available on the machine the application is being run on.  
+Algorithm to detect and print out duplicate numbers stored in an input file based on limited memory and processing available on the machine the application is being run on.  
 
-Input either takes 1 argument which is a file name containing the list of numbers to sort or no arguments
-in which case a temp file will be created with some random numbers for processing.
+Input either takes 1 argument which is a file name containing the list of numbers to sort or no arguments in which case a temp file will be created with some random numbers for processing.
  
-Command to run against a random generated text file of numbers
-java -jar build/jar/NumberMatcher.jar
+Command to run against a random generated text file of numbers<br>
+<i>java -jar build/jar/NumberMatcher.jar</i>
 
-Command to run against a given passed in file of numbers
-java -jar build/jar/NumberMatcher.jar numbers.txt
+Command to run against a given passed in file of numbers<br>
+<i>java -jar build/jar/NumberMatcher.jar numbers.txt</i>
 
-Command to run a test scenario against a small and large number set.
-java -jar build/jar/NumberMatcher.jar runtest
-
-Environment
-OS: Windows 8 Pro Desktop
-Java: JDK version 1.6.0 38
-IDE: Eclipse Juno 4.2
-Ant: 1.8 2
-*Note:  Please ensure the ant and java bin locations are added to the local PATH variable in order to compile and run the project from the command line.
-How To Build
--	Extract the attached zip DuplicateNumberMatcher.zip to any given folder.
--	CD to the project folder DuplicateNumberMatcher once extracted.
--	To clean the project and class files from the prompt type:
-ant clean
--	To compile and build the project jar file from the prompt type:
-ant release
-How To Run Release
--	To run the project a provided dos bat file is included in the base extracted folder. It can be run in 2 modes. The first one to generate a random file of numbers for processing the second will take as an argument the numbers file to process.
-o	run.bat 
-o	run.bat numbers.txt
-How To Run Test Scenario
--	To run the project test cases it can be run using ant or run using the provided run.bat dos bat file. 
-o	ant runtest
-o	run.bat runtest
-
-
-
-
-
+Command to run a test scenario against a small and large number set<br>
+<i>java -jar build/jar/NumberMatcher.jar runtest</i>
 
 Design Decisions
 The design approach taken is to use an external sorting algorithm as opposed to internal in memory sorting over the full list of numbers since we need to consider the limit on memory and processing.
